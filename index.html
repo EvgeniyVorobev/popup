@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<body>
+<div id="openModal" class="modal-design">
+        <div class="inline">
+            <div data-lang="uk">Українська</div>
+            <div data-lang="ru">Русский</div>
+        </div>
+</div>
+
+<style>
+    #openModal {
+        position: fixed;
+        z-index: 99999;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 450px;
+        margin: 0 auto;
+        height: 250px;
+        background: #ffffff;
+        border: 2px solid #d1d1d1;
+        visibility: hidden;
+        color: black;
+    }
+
+    #openModal h2 {
+        margin: 0;
+    }
+    .inline {
+        /*display: flex;*/
+        /*justify-content: space-around;*/
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .inline div {
+        font-size: 1.2em;
+        border: 2px solid #d3bc91;
+        padding: 10px;
+        width: 50%;
+        cursor: pointer;
+        margin: 10px auto;
+    }
+    .inline div:hover {
+        background-color: #aa8e59;
+    }
+    .modal-design{
+        position:fixed;
+        left:15px;
+        right:15px;
+        top:15px;
+        bottom:15px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        /*visibility:hidden;*/
+        opacity:0;
+        transition:all 0.3s;
+        background:#256D85;
+        color:#fff;
+        text-align:center;
+    }
+
+    .modal-design{
+        visibility:visible;
+        opacity: 1;
+        transition:all 0.3s;
+    }
+
+    .close-modal{
+        background-color:#002B5B;
+        padding:5px 15px;
+        color:#fff;
+        font-size:18px;
+        line-height:28px;
+        text-decoration:none;
+        text-transform:uppercase;
+        color:#fff;
+    }
+</style>
+
+<script>
+    if (localStorage.getItem('popup_lang_selected') == null) {
+        $('.modal-design').attr('style','visibility: visible;')
+    }
+    $('.inline div').on('click',(e)=>{
+        let lang = $(e.target).data('lang');
+        localStorage.setItem('popup_lang_selected',lang);
+        if (lang == 'uk') {
+            $('#form-language button:contains("Українська")').click();
+        }
+        if (lang == 'ru') {
+            $('#form-language button:contains("Русский")').click();
+        }
+    })
+</script>
+</body>
+</html>
